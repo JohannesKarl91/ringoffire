@@ -1,0 +1,22 @@
+.player{
+    display: flex;
+    align-items: center;
+    background-color: rgb(200, 37, 38);
+    width: 300px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+
+    span{
+        font-size: 32px;
+        font-weight: bold;
+        margin-left: 16px;
+    }
+
+    img{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 100%;
+    
+    }
+}

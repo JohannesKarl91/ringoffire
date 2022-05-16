@@ -1,0 +1,41 @@
+.startScreen{
+    background-color: #070d0d;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+
+    img{
+        object-fit: contain;
+        height: 100vh;
+        max-width: 100vw;
+    }
+
+    h1{
+        color: rgb(200, 37, 38);
+        position: absolute;
+        font-size: 48px;
+        top: 20%;
+        left: 35%;
+    }
+
+    button{
+        position: absolute;
+        font-size: 24px;
+        top: 50%;
+        left: 35%;
+        width: 250px;
+        height: 100px;
+        background-color: rgb(200, 37, 38);
+        border-radius: 25px;
+        box-shadow: 1px 1px 1px 0px;
+        color: whitesmoke;
+        z-index: 1;
+
+        &:hover{
+            cursor: pointer;
+            filter: brightness(1.5);
+            // background-color: rgb(224, 80, 80);
+        }
+    }
+}
