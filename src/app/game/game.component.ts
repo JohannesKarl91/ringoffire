@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { Firestore, collectionData, collection, setDoc, doc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -13,21 +17,35 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game;
+  game$: Observable<any>;
+  coll = collection(this.firestore, 'games');
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private firestore: Firestore, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.coll = collection(this.firestore, 'games');
+
     this.newGame();
+    this.route.params.subscribe((params) => {
+      console.log('id is', params['id']);
+
+      this.game$ = collectionData(this.coll);
+      this.game$.subscribe((newGame) => {
+        console.log('Game data:', newGame);
+      });
+    });
   }
 
   newGame() {
+    this.coll = collection(this.firestore, 'games');
     this.game = new Game();
+    setDoc(doc(this.coll), { 'games': this.game.toJSON() });
     console.log(this.game);
   }
 
   takeCard() {
-    if (!this.pickCardAnimation) {
+    if (!this.pickCardAnimation && this.game.stack.length > 0 && this.game.players.length > 0) {
       this.currentCard = this.game.stack.pop();
       this.pickCardAnimation = true;
 
@@ -41,6 +59,10 @@ export class GameComponent implements OnInit {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
       }, 500)
+    }
+
+    if (this.game.players.length == 0) {
+      alert('Please add a Player before picking a new card.')
     }
   }
 
