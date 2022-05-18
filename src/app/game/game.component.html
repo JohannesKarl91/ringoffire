@@ -1,25 +1,29 @@
-<app-player *ngFor="let player of game.players; let i = index" [ngStyle]="{'top.px': 100 + (i*90)}" [name]="player"
-    [playerActive]="i == game.currentPlayer" class="playerPosition">
+<app-player Class="hide-mobile" *ngFor="let player of game.players; let i = index" [ngStyle]="{'top.px': 100 + (i*90)}"
+    [name]="player" [playerActive]="i == game.currentPlayer" class="playerPosition hide-mobile">
 </app-player>
 
-<div class="gameField" style="background-image: url('/assets/img/board.jpg');">
+<div class="scroll-container hide-desktop">
+    <app-player-mobile *ngFor="let player of game.players; let i = index"
+    [name]="player" [playerActive]="i == game.currentPlayer"></app-player-mobile>
+</div>
 
+<div class="gameField" style="background-image: url('assets/img/board.jpg');">
     <div class="cardStack">
         <!-- card stack -->
         <img *ngFor="let c of [0, 1,2,3,4]; let i = index" [ngStyle]="{'right.px': i * 5}"
-            src="/assets/img/cards/red_back.png">
-        <img (click)="takeCard()" class="topCard" style="right: 25px;" src="/assets/img/cards/red_back.png">
+            src="assets/img/cards/red_back.png">
+        <img (click)="takeCard()" class="topCard" style="right: 25px;" src="assets/img/cards/red_back.png">
 
         <!-- stack for played cards -->
-        <img *ngFor="let card of game.playedCards" class="playedCard" src="/assets/img/cards/{{ card }}.png">
+        <img *ngFor="let card of game.playedCards" class="playedCard" src="assets/img/cards/{{ card }}.png">
 
         <!-- current card (animation) -->
-        <img *ngIf="pickCardAnimation" class="pickCard" style="right: 25px;"
-            src="/assets/img/cards/{{ currentCard }}.png">
+        <img *ngIf="game.pickCardAnimation" class="pickCard" style="right: 25px;"
+            src="assets/img/cards/{{ game.currentCard }}.png">
     </div>
 </div>
 
-<app-game-info [card]="currentCard" class="pin-btn"></app-game-info>
+<app-game-info [card]="game.currentCard" class="pin-btn"></app-game-info>
 
 <button class="addBtn" (click)="openDialog()" mat-fab color="primary">
     <mat-icon>add</mat-icon>
