@@ -26,6 +26,14 @@
             height: 201px !important;
             width: 105px !important;
         }
+
+        @media (max-height:414px) {
+            top: -89px;
+        }
+
+        @media (height:540px) {
+            top: -109px;
+        }
     }
 }
 
@@ -96,6 +104,11 @@
         right: 12px;
         bottom: 135px;
     }
+
+    @media (max-height:414px) {
+        bottom: 14px;
+    }
+
 }
 
 .pin-btn {
@@ -109,19 +122,24 @@
         right: 0;
         bottom: 0;
     }
+
+    @media (max-height:414px) {
+        bottom: -120px;
+    }
+
 }
 
-.scroll-container{
+.scroll-container {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0; 
+    top: 0;
 
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
-app-player-mobile{
+app-player-mobile {
     margin-left: 8px;
 }

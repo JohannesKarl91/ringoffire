@@ -4,15 +4,17 @@
     justify-content: center;
     position: relative;
     height: 100vh;
+    width: 100%;
+    align-items: center;
 
     @media(max-width:960px) {
         overflow: hidden;
     }
 
     img {
-        object-fit: contain;
+        object-fit: cover;
         height: 100vh;
-        max-width: 100vw;
+        width: 100%;
     }
 
     h1 {
@@ -21,7 +23,7 @@
         font-size: 48px;
         font-weight: bold;
         top: 25%;
-        left: 35%;
+        left: 40%;
 
         @media(max-width:960px) {
             font-size: 40px;
@@ -32,13 +34,21 @@
             font-size: 32px;
             left: 23%;
         }
+
+        @media(max-height:414px) {
+            left: 35%;
+        }
+
+        @media(height:540px) {
+            left: 35%;
+        }
     }
 
     button {
         position: absolute;
         font-size: 24px;
         top: 50%;
-        left: 35%;
+        left: 40%;
         width: 250px;
         height: 100px;
         background-color: rgb(200, 37, 38);
@@ -64,6 +74,15 @@
             width: 150px;
             height: 75px;
             left: 25% !important;
+        }
+
+        @media(max-height:414px) {
+            left: 38.5%;
+            top: 58%;
+        }
+
+        @media(max-height:540px) {
+            left: 38.5%;
         }
     }
 }
